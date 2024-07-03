@@ -1,7 +1,7 @@
 {
   "name": "mern-bookstore",
   "description": "A MERN stack bookstore web application",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
     "start":"node index.js",
     "dev" : "nodemon index.js",
