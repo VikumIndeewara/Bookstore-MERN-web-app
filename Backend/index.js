@@ -4,6 +4,9 @@ import mongoose from "mongoose";
 import { Book } from './Models/bookModel.js';
 import booksRoute from './Routes/booksRoute.js';
 import cors from 'cors';
+import path from 'path';
+
+const __dirname = path.resolve();
 
 const app = express();
 
@@ -11,8 +14,12 @@ app.use(express.json()); //middleware for parse reques tbody
 
 app.use(cors());//allows everything /we can specify the allowed information to user by using cors({origin:''localhost,methods:['GET','DELETE','PUT']})
 
+app.use(express.static(path.join(__dirname,'/client/dist')));
+app.get('*',(req,res)=>{
+    res.sendFile(path.join(__dirname, 'client','dist','index.html'))
+})
+
 app.get('/',(req,res)=>{
-    console.log("bye");
     return res.status(234).send('Welcome');
 });
 
