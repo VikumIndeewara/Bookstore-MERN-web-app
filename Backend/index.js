@@ -14,10 +14,10 @@ app.use(express.json()); //middleware for parse reques tbody
 
 app.use(cors());//allows everything /we can specify the allowed information to user by using cors({origin:''localhost,methods:['GET','DELETE','PUT']})
 
-app.use(express.static(path.join(__dirname, '..', 'Frontend', 'dist')));
+app.use(express.static(path.join(__dirname, 'Frontend', 'dist')));
 
 app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, '..', 'Frontend', 'dist', 'index.html'));
+  res.sendFile(path.join(__dirname, 'Frontend', 'dist', 'index.html'));
 });
 
 
