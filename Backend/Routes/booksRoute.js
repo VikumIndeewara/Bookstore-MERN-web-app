@@ -2,6 +2,8 @@ import express from 'express';
 
 import { Book } from '../Models/bookModel.js';
 
+import validateObjectId from '../validate/validateObject.js';
+
 
 const router = express.Router();
 // save a new book
@@ -45,7 +47,7 @@ router.get('/',async(req,res)=>{
 });
 
 //to get one book by it's ID
-router.get('/:id',async(req,res)=>{
+router.get('/:id',validateObjectId,async(req,res)=>{
     try{
         const { id } = req.params;//const id = req.params.id;
         const book = await Book.findById(id);
@@ -57,7 +59,7 @@ router.get('/:id',async(req,res)=>{
 });
 
 // update a book
-router.put('/:id',async (req,res)=>{
+router.put('/:id',validateObjectId,async (req,res)=>{
     try{
         if(!req.body.title || !req.body.author || !req.body.publishYear){
             return response.status(400).send({
@@ -79,7 +81,7 @@ router.put('/:id',async (req,res)=>{
 });
 
 // delete a book
-router.delete('/:id',async (req,res)=>{
+router.delete('/:id',validateObjectId,async (req,res)=>{
     try{
         const { id } = req.params;
         const result = await Book.findByIdAndDelete(id);

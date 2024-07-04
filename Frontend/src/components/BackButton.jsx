@@ -1,12 +1,20 @@
-import { Link } from "react-router-dom"
 import { BsArrowLeft } from "react-icons/bs"
+import { useNavigate } from "react-router-dom"
 
 const BackButton = () => {
+  const navigate = useNavigate();
+  const handleBackClick = () => {
+    navigate(-1);
+  };
   return (
     <div className="flex">
-        <Link to={'http://localhost:5173'} className="bg-sky-800 text-white px-4 py-1 rounded-lg w-fit">
-            <BsArrowLeft className="text-2xl"/>
-        </Link>
+      <button 
+        onClick={handleBackClick} 
+        className="bg-sky-800 text-white px-4 py-1 rounded-lg w-fit flex items-center"
+      >
+        <BsArrowLeft className="text-2xl" />
+        Back
+      </button>
     </div>
   )
 }
